@@ -2,10 +2,15 @@ import React from 'react'
 import { useState } from "react";
 import { useAuthStore } from '../store/useAuthStore'
 import { Camera, Mail, User } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
   const {authUser, isUpdatingProfile, updateProfile } = useAuthStore()
   const [selectedImg, setSetectedImg] = useState(null);
+
+  const navigate = useNavigate(); 
+
   const handleImageUpload = async(e) => {
     const file = e.target.files[0];
     if(!file) return;
@@ -99,6 +104,13 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+          <button
+          className='btn btn-secondary'
+          onClick={() => navigate(-1)} // Navigate to the previous page
+        >
+          <ArrowLeft size={16} />
+          Back
+        </button>
         </div>
       </div>
     </div>
